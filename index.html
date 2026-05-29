@@ -5,171 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-Lan Group of Companies | Kallilan Group International</title>
     <style>
-        /* Core Enterprise Styles */
+        /* Modern Enterprise Variables */
         :root {
-            --primary-blue: #0a2540;
+            --primary-bg: #040f1a;
+            --surface-bg: rgba(255, 255, 255, 0.03);
             --accent-blue: #00d4ff;
-            --text-light: #f4f4f9;
+            --accent-hover: #00a3cc;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
         }
+
         body, html {
             margin: 0; padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--primary-blue);
-            color: var(--text-light);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* 5-Second Preloader Animation */
+        /* Faster Preloader */
         #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #020b14;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #020810;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
-        .preloader-logo {
-            width: 250px;
-            animation: pulse 2s infinite;
-        }
+        .preloader-logo { width: 200px; animation: pulse 1.5s infinite; }
         .acronym-text {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: var(--accent-blue);
-            opacity: 0;
-            animation: fadeInOut 4.5s ease-in-out forwards;
+            margin-top: 20px; font-size: 1.2rem; letter-spacing: 3px;
+            color: var(--accent-blue); text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out forwards;
         }
-        @keyframes pulse {
-            0% { transform: scale(0.95); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(0.95); }
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(10px); }
-            20% { opacity: 1; transform: translateY(0); }
-            80% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-10px); }
-        }
+        @keyframes pulse { 0% { transform: scale(0.98); } 50% { transform: scale(1.02); } 100% { transform: scale(0.98); } }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-        /* Main Content Layout */
-        #main-content {
-            display: none; /* Hidden until preloader finishes */
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: auto;
+        /* Sticky Glass Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(4, 15, 26, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px; box-sizing: border-box; z-index: 1000;
         }
-        header {
-            text-align: center;
-            margin-bottom: 60px;
+        .nav-logo { height: 40px; }
+        .nav-links a {
+            color: var(--text-main); text-decoration: none; margin-left: 30px;
+            font-size: 0.9rem; font-weight: 600; text-transform: uppercase; transition: color 0.3s;
         }
-        h1 { font-size: 2.5rem; margin-bottom: 5px; }
-        h2 { font-size: 1.2rem; font-weight: 300; color: #a0aec0; }
+        .nav-links a:hover { color: var(--accent-blue); }
 
-        /* Subsidiary Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
         }
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
-        .card img { max-width: 150px; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 700; }
+        .hero h2 { font-size: 1.5rem; font-weight: 300; color: var(--text-muted); max-width: 800px; margin-bottom: 40px; }
 
-        /* Portal Navigation */
-        .portal-section {
-            background: linear-gradient(135deg, #112240 0%, #0a192f 100%);
-            padding: 40px;
-            border-radius: 12px;
-            margin-top: 40px;
-        }
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            margin: 10px;
-            background: var(--accent-blue);
-            color: #000;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--accent-blue);
+            display: inline-block; padding: 14px 28px;
+            background: var(--accent-blue); color: #000;
+            text-decoration: none; border-radius: 4px; font-weight: 700;
+            transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
             border: 2px solid var(--accent-blue);
         }
-        .btn:hover { opacity: 0.8; }
+        .btn:hover { background: transparent; color: var(--accent-blue); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+        .btn-outline { background: transparent; color: var(--accent-blue); }
+        .btn-outline:hover { background: var(--accent-blue); color: #000; }
+
+        /* Sections & Grids */
+        section { padding: 80px 20px; max-width: 1200px; margin: auto; text-align: center; }
+        .section-title { font-size: 2.2rem; margin-bottom: 50px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 25%; width: 50%; height: 3px; background: var(--accent-blue); }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+        }
+        .card {
+            background: var(--surface-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px; border-radius: 8px;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
+        .card img { max-width: 160px; margin-bottom: 25px; }
+        .card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+        .card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 800px;
+            background: rgba(10, 37, 64, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-blue); border-radius: 8px;
+            padding: 20px; display: none; justify-content: space-between; align-items: center;
+            z-index: 10000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .cookie-text { font-size: 0.9rem; color: #e2e8f0; margin-right: 20px; }
+        .cookie-btn {
+            background: var(--accent-blue); border: none; padding: 10px 20px;
+            color: #000; font-weight: bold; border-radius: 4px; cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
     <div id="preloader">
-        <img src="assets/klan-main-logo.png" alt="K-Lan Logo" class="preloader-logo" onerror="this.src='https://via.placeholder.com/250x100.png?text=K-LAN+LOGO'">
+        <img src="assets/klan-main-logo.png" alt="K-Lan Logo" class="preloader-logo" onerror="this.src='https://via.placeholder.com/200x80.png?text=K-LAN+LOGO'">
         <div class="acronym-text">Kallilan Group International</div>
     </div>
 
-    <div id="main-content">
-        <header>
-            <h1>K-Lan Group of Companies</h1>
-            <h2>A Kallilan Group International Enterprise</h2>
-        </header>
-
-        <div class="grid">
-            <div class="card">
-                <img src="assets/enterprise-tech-logo.png" alt="Enterprise Tech Logo" onerror="this.style.display='none'">
-                <h3>Enterprise Technology</h3>
-                <p>Advanced digital transformation and scalable infrastructure solutions for modern enterprises.</p>
-                <a href="#tech" class="btn btn-outline">Explore Tech</a>
-            </div>
-            <div class="card">
-                <img src="assets/ai-logo.png" alt="AI Solutions Logo" onerror="this.style.display='none'">
-                <h3>AI & Data Solutions</h3>
-                <p>Next-generation generative AI modeling and government-grade data analytics.</p>
-                <a href="#ai" class="btn btn-outline">Explore AI</a>
-            </div>
-            <div class="card">
-                <img src="assets/space-logo.png" alt="Space Research Logo" onerror="this.style.display='none'">
-                <h3>Space Research</h3>
-                <p>Satellite-based communications and orbital data telemetry solutions.</p>
-                <a href="#space" class="btn btn-outline">Explore Space</a>
-            </div>
+    <nav>
+        <img src="assets/klan-main-logo.png" alt="K-Lan" class="nav-logo" onerror="this.src='https://via.placeholder.com/100x40.png?text=K-LAN'">
+        <div class="nav-links">
+            <a href="#subsidiaries">Divisions</a>
+            <a href="#portals">Enterprise Portals</a>
+            <a href="tickets.html">Support</a>
         </div>
+    </nav>
 
-        <div class="portal-section">
-            <h2 style="color: white; margin-bottom: 20px;">Enterprise Portals</h2>
-            <div class="grid" style="margin-bottom: 0;">
+    <div id="main-content" style="display: none;">
+        
+        <section class="hero">
+            <h1>Engineering the Future</h1>
+            <h2>Delivering scalable enterprise technology, AI-driven automation, and aerospace data solutions across the globe.</h2>
+            <div>
+                <a href="#subsidiaries" class="btn">Our Capabilities</a>
+                <a href="#portals" class="btn btn-outline" style="margin-left: 15px;">Access Portals</a>
+            </div>
+        </section>
+
+        <section id="subsidiaries">
+            <h2 class="section-title">Core Divisions</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="assets/enterprise-tech-logo.png" alt="Enterprise Tech Logo" onerror="this.style.display='none'">
+                    <h3>Enterprise Technology</h3>
+                    <p>End-to-end digital transformation, cloud infrastructure management, and highly scalable architectural solutions.</p>
+                </div>
+                <div class="card">
+                    <img src="assets/ai-logo.png" alt="AI Solutions Logo" onerror="this.style.display='none'">
+                    <h3>AI & Data Solutions</h3>
+                    <p>Next-generation generative AI modeling, predictive analytics, and government-grade data processing.</p>
+                </div>
+                <div class="card">
+                    <img src="assets/space-logo.png" alt="Space Research Logo" onerror="this.style.display='none'">
+                    <h3>Space Research</h3>
+                    <p>Advanced satellite telemetry, orbital data communications, and global network integrations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portals" style="background: rgba(255,255,255,0.02); padding-bottom: 100px;">
+            <h2 class="section-title">Enterprise Portals</h2>
+            <div class="grid" style="max-width: 900px; margin: auto;">
                 
-                <div class="card">
-                    <h3>Employee Access</h3>
-                    <p>M365 Mailbox & Internal Ticketing</p>
-                    <a href="https://outlook.office.com" target="_blank" class="btn">Webmail Login</a>
-                    <a href="tickets.html" class="btn btn-outline">Reset Password</a>
+                <div class="card" style="text-align: left;">
+                    <h3 style="color: var(--accent-blue);">Internal Operations</h3>
+                    <p>Secure access for K-Lan employees and administrators.</p>
+                    <a href="https://outlook.office.com" target="_blank" class="btn btn-outline" style="width: 100%; box-sizing: border-box; text-align: center; margin-bottom: 15px;">M365 Webmail Login</a>
+                    <a href="tickets.html" class="btn btn-outline" style="width: 100%; box-sizing: border-box; text-align: center; border-color: transparent;">SSPR Password Reset &rarr;</a>
                 </div>
 
-                <div class="card">
-                    <h3>Guest & Customer Portal</h3>
-                    <p>Submit Enquiries, IT Tickets, and access support.</p>
-                    <a href="tickets.html" class="btn">Submit Form/Ticket</a>
+                <div class="card" style="text-align: left;">
+                    <h3 style="color: var(--accent-blue);">Client & Guest Support</h3>
+                    <p>Submit service inquiries, IT support tickets, and access resources.</p>
+                    <a href="tickets.html" class="btn" style="width: 100%; box-sizing: border-box; text-align: center;">Submit Form / Ticket</a>
                 </div>
 
             </div>
+        </section>
+
+    </div>
+
+    <div id="cookie-banner">
+        <div class="cookie-text">
+            <strong>Privacy & Cookies:</strong> We use cookies to enhance your browsing experience, analyze site traffic, and deliver optimized enterprise services. By continuing to use this site, you consent to our use of cookies.
         </div>
+        <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
     </div>
 
     <script>
-        // Preloader Logic: Removes preloader and reveals main site after 5 seconds
+        // 1. Preloader Logic (Reduced to 2 seconds)
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
@@ -179,9 +204,24 @@
                 setTimeout(() => {
                     preloader.style.display = 'none';
                     mainContent.style.display = 'block';
-                }, 500); // Wait for fade-out transition
-            }, 5000); // 5000 milliseconds = 5 seconds
+                }, 400); // Quick fade out
+            }, 2000); // 2 seconds total wait
         });
+
+        // 2. Cookie Banner Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('klanCookiesAccepted')) {
+                // Show banner after preloader finishes
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.display = 'flex';
+                }, 2500); 
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('klanCookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
     </script>
 </body>
 </html>
