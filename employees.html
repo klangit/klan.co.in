@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Secure Portal | K-Lan Group</title>
+    <style>
+        :root { --bg-color: #020810; --accent: #00d4ff; --card-bg: rgba(255,255,255,0.03); }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-color); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .login-container { background: var(--card-bg); padding: 50px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 500px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+        p { color: #a0aec0; margin-bottom: 30px; }
+        .lock-icon { font-size: 3rem; margin-bottom: 20px; }
+        .app-grid { display: flex; flex-direction: column; gap: 15px; }
+        .btn { padding: 15px; background: transparent; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; border-radius: 6px; font-weight: bold; transition: all 0.3s; text-transform: uppercase; }
+        .btn:hover { background: var(--accent); color: black; }
+        .btn-primary { background: var(--accent); color: black; }
+        .btn-primary:hover { opacity: 0.8; }
+        .footer-text { margin-top: 30px; font-size: 0.8rem; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="lock-icon">🔒</div>
+        <h1>K-Lan Employee Hub</h1>
+        <p>Access requires active Microsoft 365 Enterprise authentication.</p>
+        
+        <div class="app-grid">
+            <a href="https://www.office.com/launch/lists" target="_blank" class="btn btn-primary">Manage IT Tickets (Database)</a>
+            
+            <a href="https://outlook.office.com/mail/info@klan.co.in" target="_blank" class="btn">Open Shared Mailbox (info@)</a>
+            
+            <a href="https://passwordreset.microsoftonline.com/" target="_blank" class="btn">Self-Service Password Reset</a>
+            
+            <a href="index.html" class="btn" style="border-color: #555; color: #a0aec0;">Return to Public Site</a>
+        </div>
+        
+        <div class="footer-text">Unauthorized access is strictly prohibited. Protected by Microsoft Entra ID.</div>
+    </div>
+
+</body>
+</html>
